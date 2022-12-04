@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
+import useUser from "../../hooks/useUser";
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
+    const [isUser] = useUser(user?.email);
     const menuItems = (
         <>
             <Link to="/">
@@ -14,12 +19,30 @@ const Navbar = () => {
             <Link to="/posts">
                 <button className="btn btn-ghost font-bold">Posts</button>
             </Link>
-            <Link to="/login">
-                <button className="btn btn-ghost font-bold">Login</button>
-            </Link>
-            <Link to="/signup">
-                <button className="btn btn-ghost font-bold">SignUp</button>
-            </Link>
+        </>
+    );
+    const userItem = (
+        <>
+            {user?.uid ? (
+                <Link to="/dashboard" className="cursor-pointer">
+                    <div className="tooltip tooltip-left" data-tip={isUser?.name}>
+                        {isUser?.image ? (
+                            <img src={isUser?.image} alt="avatar" className="w-10 h-10 rounded-full mr-5 lg:mr-10" />
+                        ) : (
+                            <FaUser className="w-5 h-5 rounded-full mr-5 lg:mr-10"></FaUser>
+                        )}
+                    </div>
+                </Link>
+            ) : (
+                <>
+                    <Link to="/login">
+                        <button className="btn btn-ghost font-bold">Login</button>
+                    </Link>
+                    <Link to="/signup">
+                        <button className="btn btn-ghost font-bold">SignUp</button>
+                    </Link>
+                </>
+            )}
         </>
     );
     return (
@@ -55,7 +78,7 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">{menuItems}</ul>
             </div>
-            <div className="navbar-end">userItem</div>
+            <div className="navbar-end">{userItem}</div>
             <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

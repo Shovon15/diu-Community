@@ -12,7 +12,7 @@ const Banner = () => {
                         <div className="mx-12 my-5">
                             <h1 className="text-5xl font-bold">Find your Working partner with best skills</h1>
                             <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda</p>
-                            <Link to="/userpost" className="text-end pb-6 md:pb-0">
+                            <Link to="/posts" className="text-end pb-6 md:pb-0">
                                 <button className="btn btn-primary">All Posts</button>
                             </Link>
                         </div>
