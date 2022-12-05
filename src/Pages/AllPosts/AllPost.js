@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AllPost = ({ post }) => {
-    const { userName, userImage, date, categoryName, description } = post;
+    const { userName, userImage, date, categoryName, description, _id } = post;
     return (
         <>
             <div className="card card-side bg-slate-300 shadow-xl">
@@ -21,7 +22,9 @@ const AllPost = ({ post }) => {
                         <h1>{date}</h1>
                         <h1>comments</h1>
                         <h1>like</h1>
-                        <button className="btn btn-primary">Watch</button>
+                        <Link to={`/posts/${_id}`}>
+                            <button className="btn btn-primary">Details</button>
+                        </Link>
                     </div>
                 </div>
             </div>

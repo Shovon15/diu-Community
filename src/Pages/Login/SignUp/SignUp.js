@@ -35,7 +35,8 @@ const SignUp = () => {
     }
     // -----------------------------------
 
-    const handleSignUp = (data) => {
+    const handleSignUp = (event, data) => {
+        event.preventdefault();
         const image = data.image[0];
         const formData = new FormData();
         formData.append("image", image);

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layouts/Dashboard/DashboardLayout";
 import Main from "../../Layouts/Main/Main";
 import AllPost from "../../Pages/AllPosts/AllPosts";
+import PostDetails from "../../Pages/AllPosts/PostDetails";
 import AddPost from "../../Pages/Dashboard/AddPost/AddPost";
 import ViewPost from "../../Pages/Dashboard/ViewPost/ViewPost";
 import Home from "../../Pages/Home/Home/Home";
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
                 path: "/posts",
                 element: <AllPost />,
                 loader: () => fetch("http://localhost:5000/posts"),
+            },
+            {
+                path: "/posts/:id",
+                element: <PostDetails />,
+                loader: ({ params }) => fetch(`http://localhost:5000/posts/${params.id}`),
             },
 
             {
