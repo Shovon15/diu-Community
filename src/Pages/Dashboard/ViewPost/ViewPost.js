@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
+import Loader from "../../Shared/Loader";
 import UserPost from "./UserPost";
 
 const ViewPost = () => {
     const { user } = useContext(AuthContext);
     const {
         data: posts = [],
-        refetch,
+        // refetch,
         isLoading,
     } = useQuery({
         queryKey: ["posts"],
@@ -17,13 +18,24 @@ const ViewPost = () => {
             return data;
         },
     });
-    console.log(posts);
+    // console.log(posts);
+    if (isLoading) {
+        return <Loader></Loader>;
+    }
     return (
         <div>
-            <h1 className="text-center py-5">My All Posts</h1>
-            {posts.map((post) => (
-                <UserPost key={post._id} post={post}></UserPost>
-            ))}
+            <h1 className="text-center py-5 font-bold text-2xl">My Posts</h1>
+            {posts?.length === 0 ? (
+                <h1 className="py-7 font-bold text-center">You have no post yet! add a post!!!</h1>
+            ) : (
+                <>
+                    <div className="gird grid-cols-1 gap-5">
+                        {posts.map((post) => (
+                            <UserPost key={post._id} post={post}></UserPost>
+                        ))}
+                    </div>
+                </>
+            )}
         </div>
     );
 };

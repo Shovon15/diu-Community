@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
-import useUser from "../../hooks/useUser";
+import useUser from "../../../hooks/useUser";
+import Loader from "../../Shared/Loader";
 
 const AddPost = () => {
     const {
@@ -16,8 +17,8 @@ const AddPost = () => {
     const { user } = useContext(AuthContext);
     const [isUser] = useUser(user?.email);
 
-    const navigate = useNavigate();
-    const imageHostKey = process.env.REACT_APP_img_KEY;
+    // const navigate = useNavigate();
+    // const imageHostKey = process.env.REACT_APP_img_KEY;
     const date = new Date();
 
     let day = date.getDate();
@@ -61,9 +62,9 @@ const AddPost = () => {
         saveItem(items);
     };
 
-    // if (isLoading) {
-    //     return <Loader />;
-    // }
+    if (isLoading) {
+        return <Loader />;
+    }
 
     // const handleAddItems = () => {};
     return (

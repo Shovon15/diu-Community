@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
-import useUser from "../../hooks/useUser";
+import useUser from "../../../hooks/useUser";
+// import useUser from "../../hooks/useUser";
 
 const UpdateProfile = ({ refetch, modalClose }) => {
     const { user } = useContext(AuthContext);

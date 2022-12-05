@@ -3,12 +3,13 @@ import React from "react";
 // import AiFillLike from "@react-icons/all-files";
 import { AiOutlineComment, AiFillLike, AiTwotoneCalendar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import PrimaryButton from "../../../Componants/PrimaryButton/PrimaryButton";
 
 const RecentPost = ({ post }) => {
     const { userName, userImage, date, categoryName, description, _id } = post;
     return (
         <>
-            <div className="card card-side flex-col lg:flex-row w-full bg-slate-300 shadow-xl">
+            <div className="card card-side flex-col lg:flex-row w-full bg-white shadow-xl">
                 <div className="m-5 w-full lg:w-3/12 ">
                     <div className="flex items-center space-x-3">
                         <img src={userImage} alt="userImage" className="w-16 h-16 rounded-full" />
@@ -17,7 +18,7 @@ const RecentPost = ({ post }) => {
                     <p>Alumni</p>
                     <p>Daffodil international university</p>
                 </div>
-                <div className="card-body p-5 w-full lg:w-9/12">
+                <div className="card-body p-5 w-full lg:w-9/12 min-h-fit">
                     <h2 className="card-title">{categoryName}</h2>
                     <p>{description}</p>
                     <p>Looking For: {categoryName}</p>
@@ -37,7 +38,7 @@ const RecentPost = ({ post }) => {
                     </div>
                     <div className="flex justify-end my-3">
                         <Link to={`/posts/${_id}`}>
-                            <button className="btn btn-primary">Details</button>
+                            <PrimaryButton className="btn btn-primary">Details</PrimaryButton>
                         </Link>
                     </div>
                 </div>

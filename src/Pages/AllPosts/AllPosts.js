@@ -7,7 +7,7 @@ const AllPosts = () => {
     console.log(posts);
     return (
         <div>
-            <h1 className="text-center">All Posts</h1>
+            <h1 className="mx-10 py-5 font-bold text-2xl">All Posts</h1>
             <div className="grid  gap-5 mx-10">
                 {posts.map((post) => (
                     <AllPost key={post._id} post={post}></AllPost>

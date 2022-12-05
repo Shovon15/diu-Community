@@ -9,6 +9,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import SignUp from "../../Pages/Login/SignUp/SignUp";
 import UserProfile from "../../Pages/Profile/UserProfile/UserProfile";
+import PrivateRoutes from "../ProvateRoutes/privateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -29,9 +30,13 @@ const router = createBrowserRouter([
                 loader: () => fetch("http://localhost:5000/posts"),
             },
             {
-                path: "/posts/:id",
-                element: <PostDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/posts/${params.id}`),
+                path: "/posts/:_id",
+                element: (
+                    <PrivateRoutes>
+                        <PostDetails />
+                    </PrivateRoutes>
+                ),
+                loader: ({ params }) => fetch(`http://localhost:5000/posts/${params._id}`),
             },
 
             {
@@ -46,7 +51,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: (
+            <PrivateRoutes>
+                <DashboardLayout />
+            </PrivateRoutes>
+        ),
         children: [
             {
                 path: "/dashboard",

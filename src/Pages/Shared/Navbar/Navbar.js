@@ -3,7 +3,7 @@ import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
-import useUser from "../../hooks/useUser";
+import useUser from "../../../hooks/useUser";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
@@ -11,13 +11,13 @@ const Navbar = () => {
     const menuItems = (
         <>
             <Link to="/">
-                <button className="btn btn-ghost font-bold">Home</button>
+                <button className="btn btn-ghost font-bold hover:text-white">Home</button>
             </Link>
             <Link to="/dashboard">
-                <button className="btn btn-ghost font-bold">Profile</button>
+                <button className="btn btn-ghost font-bold hover:text-white">Profile</button>
             </Link>
             <Link to="/posts">
-                <button className="btn btn-ghost font-bold">Posts</button>
+                <button className="btn btn-ghost font-bold hover:text-white">Posts</button>
             </Link>
         </>
     );
@@ -36,17 +36,17 @@ const Navbar = () => {
             ) : (
                 <>
                     <Link to="/login">
-                        <button className="btn btn-ghost font-bold">Login</button>
+                        <button className="btn btn-ghost font-bold hover:text-white">Login</button>
                     </Link>
                     <Link to="/signup">
-                        <button className="btn btn-ghost font-bold">SignUp</button>
+                        <button className="btn btn-ghost font-bold hover:text-white">SignUp</button>
                     </Link>
                 </>
             )}
         </>
     );
     return (
-        <div className="navbar border-b bg-gradient-to-r from-cyan-500 to-blue-500  ">
+        <div className="navbar  border-b bg-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -76,7 +76,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">{menuItems}</ul>
+                <ul className="menu menu-horizontal p-0 text-slate-600 ">{menuItems}</ul>
             </div>
             <div className="navbar-end">{userItem}</div>
             <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
