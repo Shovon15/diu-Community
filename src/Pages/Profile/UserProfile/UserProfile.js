@@ -2,18 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
-import useUser from "../../../hooks/useUser";
+// import useUser from "../../../hooks/useUser";
 import UpdateProfile from "./UpdateProfile";
 
 const UserProfile = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [isUser] = useUser(user?.email);
+    // const [isUser] = useUser(user?.email);
     // console.log(isUser);
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+            const res = await fetch(`https://diu-community-server.vercel.app/users/${user?.email}`);
             const data = await res.json();
             return data;
         },

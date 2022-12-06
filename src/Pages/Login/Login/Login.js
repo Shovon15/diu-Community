@@ -54,7 +54,7 @@ const Login = () => {
     const saveUser = (name, email, userRole, image) => {
         const users = { name, email, userRole, image };
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://diu-community-server.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

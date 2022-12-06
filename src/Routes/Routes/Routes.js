@@ -27,7 +27,7 @@ const router = createBrowserRouter([
             {
                 path: "/posts",
                 element: <AllPost />,
-                loader: () => fetch("http://localhost:5000/posts"),
+                loader: () => fetch("https://diu-community-server.vercel.app/posts"),
             },
             {
                 path: "/posts/:_id",
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
                         <PostDetails />
                     </PrivateRoutes>
                 ),
-                loader: ({ params }) => fetch(`http://localhost:5000/posts/${params._id}`),
+                loader: ({ params }) => fetch(`https://diu-community-server.vercel.app/posts/${params._id}`),
             },
 
             {
@@ -68,6 +68,7 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/viewpost",
                 element: <ViewPost />,
+                loader: ({ params }) => fetch(`https://diu-community-server.vercel.app/posts/${params._id}`),
             },
         ],
     },

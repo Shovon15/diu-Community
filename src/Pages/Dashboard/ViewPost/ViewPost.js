@@ -1,31 +1,34 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
-import { AuthContext } from "../../../Context/AuthContext/AuthContext";
-import Loader from "../../Shared/Loader";
-import UserPost from "./UserPost";
+// import { useQuery } from "@tanstack/react-query";
+// import React, { useContext } from "react";
+// import { AuthContext } from "../../../Context/AuthContext/AuthContext";
+// import Loader from "../../Shared/Loader";
+// import UserPost from "./UserPost";
 
 const ViewPost = () => {
-    const { user } = useContext(AuthContext);
-    const {
-        data: posts = [],
-        // refetch,
-        isLoading,
-    } = useQuery({
-        queryKey: ["posts"],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/posts/${user?.email}`);
-            const data = await res.json();
-            return data;
-        },
-    });
+    // const { user, isUser } = useContext(AuthContext);
+
+    // console.log(isUser, user);
+    // const {
+    //     data: posts = [],
+    //     // refetch,
+    //     isLoading,
+    // } = useQuery({
+    //     queryKey: ["posts"],
+    //     queryFn: async () => {
+    //         const res = await fetch(`https://diu-community-server.vercel.app/posts/${user?.email}`);
+    //         const data = await res.json();
+    //         return data;
+    //     },
+    // });
     // console.log(posts);
-    if (isLoading) {
-        return <Loader></Loader>;
-    }
+    // if (isLoading) {
+    //     return <Loader></Loader>;
+    // }
     return (
         <div>
             <h1 className="text-center py-5 font-bold text-2xl">My Posts</h1>
-            {posts?.length === 0 ? (
+            <h1 className="text-center py-5 font-bold text-2xl">Coming soon....</h1>
+            {/* {posts?.length === 0 ? (
                 <h1 className="py-7 font-bold text-center">You have no post yet! add a post!!!</h1>
             ) : (
                 <>
@@ -35,7 +38,7 @@ const ViewPost = () => {
                         ))}
                     </div>
                 </>
-            )}
+            )} */}
         </div>
     );
 };

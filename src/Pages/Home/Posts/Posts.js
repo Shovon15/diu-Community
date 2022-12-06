@@ -7,12 +7,12 @@ import RecentPost from "./RecentPost";
 const Posts = () => {
     const {
         data: posts = [],
-        refetch,
-        isLoading,
+        // refetch,
+        // isLoading,
     } = useQuery({
         queryKey: ["posts"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/topposts");
+            const res = await fetch("https://diu-community-server.vercel.app/topposts");
             const data = await res.json();
             return data;
         },
