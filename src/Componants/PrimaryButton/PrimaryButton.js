@@ -1,10 +1,11 @@
 import React from "react";
 
 const PrimaryButton = ({ children }) => {
-    return <button className="btn bg-cyan-400 border-none">{children}</button>;
+    return (
+        <button className="btn border-cyan-700 hover:border-cyan-700 bg-cyan-700  hover:bg-white hover:text-cyan-700   px-12">
+            {children}
+        </button>
+    );
 };
 
 export default PrimaryButton;
-{
-    /* <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">{children}</button> */
-}

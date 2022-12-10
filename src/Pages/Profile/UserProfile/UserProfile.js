@@ -2,31 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
-// import useUser from "../../../hooks/useUser";
 import UpdateProfile from "./UpdateProfile";
 
 const UserProfile = () => {
     const { user, logOut } = useContext(AuthContext);
-    // const [isUser] = useUser(user?.email);
-    // console.log(isUser);
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await fetch(`https://diu-community-server.vercel.app/users/${user?.email}`);
+            const res = await fetch(`https://diu-community-server-shovon15.vercel.app/users/${user?.email}`);
             const data = await res.json();
             return data;
         },
     });
     console.log(users);
-    const { name, userRole, image, institution, department, batch, profession } = users;
-
-    // const [updateUser, setUpdateUser] = useState();
-    // // console.log(deletingBuyer);
-
-    // const modalClose = () => {
-    //     setUpdateUser(null);
-    // };
+    const { name, image, institution, department, batch, profession } = users;
 
     const handleLogOut = () => {
         logOut()
@@ -52,7 +42,6 @@ const UserProfile = () => {
                     <h1>
                         profession:<span className="font-bold capitalize"> {profession}</span>
                     </h1>
-                    <h1>User Role: {userRole}</h1>
                 </div>
             </div>
             <div className="mx-8 flex flex-row space-x-10">

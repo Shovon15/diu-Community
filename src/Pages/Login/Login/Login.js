@@ -5,10 +5,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 const Login = () => {
-    // const [passwordShown, setPasswordShown] = useState(false);
     const { signIn, googleSignIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState();
-    // const [loginUserEmail, setLoginUserEmail] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
@@ -54,7 +52,7 @@ const Login = () => {
     const saveUser = (name, email, userRole, image) => {
         const users = { name, email, userRole, image };
 
-        fetch("https://diu-community-server.vercel.app/users", {
+        fetch("https://diu-community-server-shovon15.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

@@ -1,4 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Link } from "react-router-dom";
+import PrimaryButton from "../../Componants/PrimaryButton/PrimaryButton";
 import DashboardLayout from "../../Layouts/Dashboard/DashboardLayout";
 import Main from "../../Layouts/Main/Main";
 import AllPost from "../../Pages/AllPosts/AllPosts";
@@ -21,13 +22,14 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "/profile",
-                element: <Home />,
-            },
-            {
                 path: "/posts",
-                element: <AllPost />,
-                loader: () => fetch("https://diu-community-server.vercel.app/posts"),
+                element: (
+                    <PrivateRoutes>
+                        {" "}
+                        <AllPost />
+                    </PrivateRoutes>
+                ),
+                loader: () => fetch("https://diu-community-server-shovon15.vercel.app/posts"),
             },
             {
                 path: "/posts/:_id",
@@ -36,7 +38,7 @@ const router = createBrowserRouter([
                         <PostDetails />
                     </PrivateRoutes>
                 ),
-                loader: ({ params }) => fetch(`https://diu-community-server.vercel.app/posts/${params._id}`),
+                loader: ({ params }) => fetch(`https://diu-community-server-shovon15.vercel.app/posts/${params._id}`),
             },
 
             {
@@ -68,9 +70,19 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/viewpost",
                 element: <ViewPost />,
-                loader: ({ params }) => fetch(`https://diu-community-server.vercel.app/posts/${params._id}`),
             },
         ],
+    },
+    {
+        path: "*",
+        element: (
+            <div className="py-20 md:py-44">
+                <p className="text-center font-bold text-3xl">Page Not found</p>
+                <Link to="/" className="flex justify-center mt-5">
+                    <PrimaryButton>Home</PrimaryButton>
+                </Link>
+            </div>
+        ),
     },
 ]);
 export default router;

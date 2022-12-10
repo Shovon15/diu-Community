@@ -6,7 +6,7 @@ const useUser = (email) => {
 
     useEffect(() => {
         if (email) {
-            fetch(`https://diu-community-server.vercel.app/users/${email}`)
+            fetch(`https://diu-community-server-shovon15.vercel.app/users/${email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     // console.log(data);

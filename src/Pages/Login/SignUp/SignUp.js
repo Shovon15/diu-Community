@@ -7,7 +7,6 @@ import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 const SignUp = () => {
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
-    const [userCheck, setUserCheck] = useState(true);
     const [passwordShown, setPasswordShown] = useState(false);
     const [signUpError, setSignUpError] = useState();
     const navigate = useNavigate();
@@ -16,27 +15,15 @@ const SignUp = () => {
     const from = location.state?.from?.pathname || "/";
 
     const imageHostKey = process.env.REACT_APP_img_KEY;
-    console.log(imageHostKey);
+    // console.log(imageHostKey);
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
-    // -------------------check buyer/seller-------------
-    let userRole = "student";
-    const toggleUser = () => {
-        setUserCheck(!userCheck);
-    };
-    if (userCheck === true) {
-        userRole = "student";
-    } else {
-        userRole = "Employer";
-    }
-    // -----------------------------------
-
-    const handleSignUp = (event, data) => {
-        event.preventdefault();
+    const handleSignUp = (data) => {
+        // event.preventdefault();
         const image = data.image[0];
         const formData = new FormData();
         formData.append("image", image);
@@ -47,7 +34,7 @@ const SignUp = () => {
         })
             .then((res) => res.json())
             .then((imgData) => {
-                console.log(imgData);
+                // console.log(imgData);
                 if (imgData.success) {
                     let image = imgData.data.url;
                     setSignUpError("");
@@ -62,13 +49,13 @@ const SignUp = () => {
                             };
                             updateUser(userInfo)
                                 .then(() => {
-                                    saveUser(data.name, data.email, userRole, image);
+                                    saveUser(data.name, data.email, image);
                                     navigate(from, { replace: true });
                                 })
                                 .catch((err) => console.log(err));
                         })
                         .catch((error) => {
-                            console.log(error);
+                            // console.log(error);
                             setSignUpError(error.message);
                         });
                 }
@@ -82,7 +69,7 @@ const SignUp = () => {
             .then((result) => {
                 const user = result.user;
                 // console.log(user);
-                saveUser(user.displayName, user.email, user.photoURL, userRole);
+                saveUser(user.displayName, user.email, user.photoURL);
             })
             .catch((error) => {
                 console.log(error.message);
@@ -90,10 +77,10 @@ const SignUp = () => {
             });
     };
 
-    const saveUser = (name, email, userRole, image) => {
-        const users = { name, email, userRole, image };
+    const saveUser = (name, email, image) => {
+        const users = { name, email, image };
 
-        fetch("https://diu-community-server.vercel.app/users", {
+        fetch("https://diu-community-server-shovon15.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -124,12 +111,6 @@ const SignUp = () => {
         <div className="h-[800px] flex justify-center items-center">
             <div className="w-96 p-7 bg-slate-300 dark:bg-slate-600 rounded-xl">
                 <h2 className="text-2xl text-center font-bold text-blue-500">Sign Up</h2>
-
-                <span onClick={toggleUser} className="flex space-x-2 justify-center items-center p-2 text-orange-600">
-                    <button className="btn btn-outline btn-sm">{userRole} </button>
-                    <p className="font-bold">Account</p>
-                </span>
-
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="form-control w-full max-w-xs dark:text-slate-800">
                         <label className="label">

@@ -21,9 +21,8 @@ const DashboardLayout = () => {
                         <li>
                             <Link to="/dashboard/addposts">Add Post</Link>
                         </li>
-                        <li>{/* <Link to="/dashboard/viewpost">View My Post</Link> */}</li>
                         <li>
-                            <Link to="/dashboard">emails</Link>
+                            <Link to="/dashboard/viewpost">View My Post</Link>
                         </li>
                     </ul>
                 </div>

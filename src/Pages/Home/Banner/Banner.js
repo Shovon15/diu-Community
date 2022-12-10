@@ -12,9 +12,12 @@ const Banner = () => {
                         {/* <img src={chair} className="rounded-lg lg:w-1/2 shadow-2xl" alt="" /> */}
                         <div className="mx-12 my-5">
                             <h1 className="text-5xl font-bold">Find your Working partner with best skills</h1>
-                            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda</p>
+                            <p className="py-6">
+                                Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda which is the same as
+                                saying through shrinking from toil and pain.
+                            </p>
                             <Link to="/posts" className="text-end pb-6 md:pb-0">
-                                <PrimaryButton className="btn btn-primary">All Posts</PrimaryButton>
+                                <PrimaryButton className="">All Posts</PrimaryButton>
                             </Link>
                         </div>
                     </div>

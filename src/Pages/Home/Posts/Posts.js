@@ -2,22 +2,27 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../../Componants/PrimaryButton/PrimaryButton";
+import Loader from "../../Shared/Loader";
 import RecentPost from "./RecentPost";
 
 const Posts = () => {
     const {
         data: posts = [],
         // refetch,
-        // isLoading,
+        isLoading,
     } = useQuery({
         queryKey: ["posts"],
         queryFn: async () => {
-            const res = await fetch("https://diu-community-server.vercel.app/topposts");
+            const res = await fetch("https://diu-community-server-shovon15.vercel.app/topposts");
             const data = await res.json();
             return data;
         },
     });
-    console.log(posts);
+
+    if (isLoading) {
+        return <Loader />;
+    }
+
     return (
         <div className="mx-5 md:mx-10">
             <h1 className="text-center font-bold text-3xl my-5 lg:my-10 ">Recent Posts</h1>
@@ -26,9 +31,11 @@ const Posts = () => {
                     <RecentPost key={post._id} post={post}></RecentPost>
                 ))}
             </div>
-            <Link to="/posts" className="flex justify-center my-5">
-                <PrimaryButton>See all post</PrimaryButton>
-            </Link>
+            <div className="flex justify-center my-5">
+                <Link to="/posts">
+                    <PrimaryButton>See all post</PrimaryButton>
+                </Link>
+            </div>
         </div>
     );
 };

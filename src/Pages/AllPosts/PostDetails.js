@@ -1,13 +1,23 @@
 import React from "react";
-import { AiFillLike, AiOutlineComment, AiTwotoneCalendar } from "react-icons/ai";
-import { Link, useLoaderData } from "react-router-dom";
-import PrimaryButton from "../../Componants/PrimaryButton/PrimaryButton";
+import { AiTwotoneCalendar } from "react-icons/ai";
+import { useLoaderData } from "react-router-dom";
 import UserComments from "./UserComments";
 
 const PostDetails = () => {
     const posts = useLoaderData();
     // console.log(posts);
-    const { userName, userImage, date, categoryName, description, _id } = posts;
+    const {
+        userName,
+        userImage,
+        date,
+        categoryName,
+        description,
+        _id,
+        userProfession,
+        userInstitution,
+        userDepartment,
+        userBatch,
+    } = posts;
     return (
         <>
             <div className="card card-side flex-col lg:flex-row  bg-white shadow-inherit mx-5 md:mx-10 mt-10">
@@ -16,26 +26,19 @@ const PostDetails = () => {
                         <img src={userImage} alt="userImage" className="w-16 h-16 rounded-full" />
                         <p className="font-bold">{userName}</p>
                     </div>
-                    <p>Alumni</p>
-                    <p>Daffodil international university</p>
+                    <div className="font-semibold pt-3">
+                        <p>{userProfession}</p>
+                        <p>{userInstitution}</p>
+                        <p>{userDepartment} Department</p>
+                        <p>Batch: {userBatch}</p>
+                    </div>
                 </div>
                 <div className="card-body p-10 w-full lg:w-9/12">
-                    <h2 className="card-title">{categoryName}</h2>
-                    <p>{description}</p>
-                    <p>Looking For: {categoryName}</p>
-                    <div className="card-actions justify-between items-end mx-10 mt-10">
-                        <div className="flex flex-row items-center space-x-2 ">
-                            <AiTwotoneCalendar className="w-8 h-8" />
-                            <p className="font-semibold">{date}</p>
-                        </div>
-                        <div className="flex flex-row items-center space-x-2 ">
-                            <AiOutlineComment className="w-8 h-8" />
-                            <p className="font-semibold"> 23</p>
-                        </div>
-                        <div className="flex flex-row items-center space-x-2">
-                            <AiFillLike className="w-8 h-8" />
-                            <p className="font-semibold"> 58</p>
-                        </div>
+                    <h2 className="card-title">{categoryName.toUpperCase()}</h2>
+                    <p className="font-semibold">{description}</p>
+                    <div className="card-actions flex flex-row items-center space-x-2 ">
+                        <AiTwotoneCalendar className="w-5 h-5" />
+                        <p className="font-semibold">{date}</p>
                     </div>
                 </div>
             </div>

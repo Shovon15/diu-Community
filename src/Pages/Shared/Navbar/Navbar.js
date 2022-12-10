@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 import useUser from "../../../hooks/useUser";
@@ -10,15 +10,15 @@ const Navbar = () => {
     const [isUser] = useUser(user?.email);
     const menuItems = (
         <>
-            <Link to="/">
+            <NavLink to="/">
                 <button className="btn btn-ghost font-bold hover:text-white">Home</button>
-            </Link>
-            <Link to="/dashboard">
+            </NavLink>
+            <NavLink to="/dashboard">
                 <button className="btn btn-ghost font-bold hover:text-white">Profile</button>
-            </Link>
-            <Link to="/posts">
+            </NavLink>
+            <NavLink to="/posts">
                 <button className="btn btn-ghost font-bold hover:text-white">Posts</button>
-            </Link>
+            </NavLink>
         </>
     );
     const userItem = (
@@ -66,7 +66,7 @@ const Navbar = () => {
                     </label>
                     <ul
                         tabIndex={0}
-                        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 border-none"
                     >
                         {menuItems}
                     </ul>

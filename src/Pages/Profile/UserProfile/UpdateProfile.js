@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 import useUser from "../../../hooks/useUser";
-// import useUser from "../../hooks/useUser";
 
 const UpdateProfile = ({ refetch, modalClose }) => {
     const { user } = useContext(AuthContext);
@@ -18,13 +17,11 @@ const UpdateProfile = ({ refetch, modalClose }) => {
             batch: form.batch.value,
             profession: form.profession.value,
         };
-
-        // saveUpdateUser(users);
         saveUpdateUser(users);
     };
 
     const saveUpdateUser = (users) => {
-        fetch(`https://diu-community-server.vercel.app/users/${user?.email}`, {
+        fetch(`https://diu-community-server-shovon15.vercel.app/users/${user?.email}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -33,13 +30,10 @@ const UpdateProfile = ({ refetch, modalClose }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                // navigate(from, { replace: true });
-                console.log("userSaveDb", data);
-                // getUserToken(email);
+                // console.log("userSaveDb", data);
                 if (data.acknowledged) {
                     toast.success("Profile Updated");
                     refetch();
-                    // isUserLoading(true);
                     modalClose();
                 } else {
                     toast.error(data.message);
